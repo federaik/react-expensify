@@ -1,8 +1,10 @@
-export default (state = {}, action) => {
+export default (expenses = [], action) => {
     switch (action.type){
         case 'ADD_EXPENSE':
-            return state;
+            return [
+                ...expenses, action.data
+            ];
         default:
-            return state;
+            return expenses;
     }
 }
