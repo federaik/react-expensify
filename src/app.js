@@ -8,8 +8,18 @@ import HelpPage from './components/HelpPage';
 import NotFoundPage from './components/NotFoundPage';
 import Header from './components/Header';
 import configureStore from './store/configureStore';
+import { addExpense } from './actions/expenses';
 
 const store = configureStore();
+
+store.dispatch(addExpense(
+    {
+        id: 1,
+        name: 'Expense 1',
+        desc: 'some text'
+    }
+))
+
 console.log(store.getState());
 
 const routes = (
