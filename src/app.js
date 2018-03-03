@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM  from 'react-dom';
+import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ExpensifyApp from './components/ExpensifyApp';
 import CreatePage from './components/CreatePage';
@@ -18,23 +19,33 @@ store.dispatch(addExpense(
         name: 'Expense 1',
         desc: 'some text'
     }
+));
+
+store.dispatch(addExpense(
+    {
+        id: 2,
+        name: 'Expense 2',
+        desc: 'lorem ipsum, pa'
+    }
 ))
 
 console.log(store.getState());
 
 const routes = (
-    <BrowserRouter>
-        <div>
-            <Header />
-            <Switch>
-                <Route path="/" component={ExpensifyApp} exact={true}/>
-                <Route path="/create" component={CreatePage} />
-                <Route path="/edit" component={EditPage} />
-                <Route path="/help" component={HelpPage} />
-                <Route component={NotFoundPage} />
-            </Switch>      
-        </div>      
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <div>
+                <Header />
+                <Switch>
+                    <Route path="/" component={ExpensifyApp} exact={true}/>
+                    <Route path="/create" component={CreatePage} />
+                    <Route path="/edit" component={EditPage} />
+                    <Route path="/help" component={HelpPage} />
+                    <Route component={NotFoundPage} />
+                </Switch>      
+            </div>      
+        </BrowserRouter>
+    </Provider>
 );
 
 ReactDOM.render(routes, document.getElementById('app'));
