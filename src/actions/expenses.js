@@ -1,5 +1,5 @@
 export const addExpense = (expense = {}) => {
-    console.log('otherUser branch')
+    console.log('test branch');
     return {
         type: 'ADD_EXPENSE',
         data: {

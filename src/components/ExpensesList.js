@@ -1,5 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ExpenseListItem from './ExpenseListItem';
+import configureStore from '../store/configureStore';
+import { filterVisibleExpenses } from '../actions/filters';
+
+const store = configureStore();
+
 
 const ExpenseList = (props) => (
     <div>
@@ -7,12 +13,15 @@ const ExpenseList = (props) => (
         <ul>
         {
             props.expenses.map((expense, key) => 
-                (<li key={key}>{expense.name}</li>)
+                <ExpenseListItem key={key} {...expense} />
             )
         }
         </ul>
     </div>
 )
+
+store.dispatch(filterVisibleExpenses());
+console.log(store.getState())
 
 const mapStoreToProps = (state) => {
     return {
