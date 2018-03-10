@@ -13,6 +13,8 @@ import { addExpense } from './actions/expenses';
 
 const store = configureStore();
 
+console.log('testing reset soft2');
+
 store.dispatch(addExpense(
     {
         id: 1,
