@@ -13,11 +13,14 @@ import { addExpense } from './actions/expenses';
 
 const store = configureStore();
 
+console.log('testing reset soft2');
+
 store.dispatch(addExpense(
     {
         id: 1,
         name: 'Expense 1',
-        desc: 'some text'
+        desc: 'some text',
+        visible: true
     }
 ));
 
@@ -25,7 +28,8 @@ store.dispatch(addExpense(
     {
         id: 2,
         name: 'Expense 2',
-        desc: 'lorem ipsum, pa'
+        desc: 'lorem ipsum, pa',
+        visible: false
     }
 ))
 
