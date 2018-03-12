@@ -1,31 +1,25 @@
-export function itemsIsLoadingReducer(state, action){
+export function itemsIsLoadingReducer(state = false, action){
     switch(action.type){
         case 'ITEMS_IS_LOADING':
-            return {
-                loading: action.loading
-            };
+            return action.loading;            
         default: 
             return state;
     }
 }
 
-export function itemsHasErroredReducer(state, action){
+export function itemsHasErroredReducer(state = false, action){
     switch(action.type){
         case 'ITEMS_HAS_ERRORED':
-            return {
-                errored: action.errored
-            };
+            return action.errored;            
         default: return state;
     }
 }
 
 
-export function itemsFetchSuccessReducer(state, action){
+export function itemsFetchSuccessReducer(state = [], action){
     switch(action.type){
         case 'ITEMS_FETCH_SUCCESS':
-            return {
-                items: action.items
-            };
+            return action.items;
         default: return state;
     }
 }

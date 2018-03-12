@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import 'whatwg-fetch';
+import { Provider } from 'react-redux';
+import configureStore from './fetch-configure-store';
+import ListItem from './fetch-list-items';
 
-class FetchItems extends React.Component {
+class FetchItems extends Component {
 
     constructor(props){
         super(props);
@@ -13,7 +16,7 @@ class FetchItems extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchItems();
+        //this.fetchItems();
     }
 
     fetchItems() {
@@ -24,14 +27,15 @@ class FetchItems extends React.Component {
 
     render(){
         return (<div>
-            <ul>
-                {this.state.items.map((item, key) => {
-                        return <li key={key}>{item.title}</li>;
-                    })
-                }
-            </ul>
+            <ListItem />
         </div>)
     }
 }
 
-ReactDOM.render(<FetchItems />, document.getElementById('app'));
+const store = configureStore();
+
+ReactDOM.render(
+    <Provider store={store}>
+        <FetchItems />
+    </Provider>
+    , document.getElementById('app'));
